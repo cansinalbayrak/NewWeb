@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Update";
+}
+
+@model Product
+<h1>Update</h1>
+
+
+
+
+
+<form asp-action="Update" asp-controller="Product" method="post">
+
+
+    
+    <input class="form-control" asp-for="Id" placeholder="ıd" readonly/>
+    <input class="form-control" asp-for="Name" placeholder="@Model.Name" />
+    <input class="form-control" asp-for="Description" placeholder="@Model.Description" />
+    <input class="form-control" asp-for="Price" placeholder="@Model.Price" />
+    <input class="form-control" asp-for="ImgLink" placeholder="@Model.ImgLink" />
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

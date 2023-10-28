@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model List<Product>
+<h1 class="text-center">Product List</h1>
+
+<a class="btn btn-primary" asp-controller="product" asp-action="Add">Geri dön</a>
+
+
+<form asp-action="Search" method = "post">
+    <div class="row">
+        <div class="col-10">
+            <input class="form-control" name="id" type="text" placeholder="desc" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+
+    </div>
+    
+</form>
+
+<form asp-action="SearchById" method="post">
+    <div class="row">
+        <div class="col-10">
+            <input class="form-control" name="id" type="number" placeholder="id" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+
+    </div>
+
+</form>
+
+
+@{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>İmage</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td> @item.Id </td>
+                    <td> @item.Name </td>
+                    <td> @item.Description </td>
+                    <td> @item.Price </td>
+                    <td> <img src="@item.ImgLink" class="card-img-top" alt="img"> </td>
+                    <td>
+                        <a class="btn btn-outline-danger" asp-action="delete" asp-controller="product" asp-route-id="@item.Id">
+                            Sil
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" asp-action="Update" asp-controller="product" asp-route-id="@item.Id">
+                            Güncelle
+                        </a>
+                    </td>
+
+                </tr>
+                }
+
+        </tbody>
+        </thead>
+    </table>
+
+  
+
+}
+
+<br />
+<hr />
+
+<div class="container">
+
+    <div class="row">
+        @{
+
+
+            foreach (var item in Model)
+            {
+
+                <div class="col-4">
+                    <div class="card">
+                        <img src="@item.ImgLink" class="card-img-top" alt="img">
+                        <div class="card-body">
+                            <h3 class="text-center">@item.Name  @("  " + item.Price + " TL")</h3>
+                            <p class="card-text">@item.Description</p>
+                            <span class="badge bg-info">@("ID : " + item.Id)</span>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        }
+    </div>
+</div>
